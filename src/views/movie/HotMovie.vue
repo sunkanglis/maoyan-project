@@ -1,0 +1,80 @@
+<template>
+    <section class="hot-movie">
+        <div ref='root' class="hot-movie-wrapper">
+            <div  class="hot-movie-list">
+                <hot-movie-item v-for="film in films" :key="film.id" :info='film'></hot-movie-item>
+                <div style="height:150px"></div>
+            </div>
+        </div>
+    </section>
+</template>
+<script>
+import HotMovieItem from '@c/common/app-movie/HotMovieItem';
+import scroll from '@util/scroll';
+export default {
+    data(){
+        return {
+            movieIds:[],
+            films :[],
+            num :0
+        }
+    },
+    components:{
+        HotMovieItem
+    },
+    computed:{
+        Idlist(){
+            var arr1 = [];
+            for(var i=0;i<this.movieIds.length;i=i+10){
+                var arr2 =  this.movieIds;
+                arr1.push(arr2.slice(i,i+10));
+            }
+            return arr1;
+        }
+    },
+    async created(){
+        let results = await this.$http({
+            url : '/my/ajax/movieOnInfoList',
+            params:{
+                token:''
+            }
+        })
+        this.movieIds = results.movieIds;
+        this.getFilms();
+    },
+    methods:{
+        async getFilms(){// 加载的主要逻辑
+            let result = await this.$http({
+                url:'/my/ajax/moreComingList',
+                params:{
+                    token:'',
+                    movieIds : this.Idlist[this.num].join(',')
+                    }
+             })
+            if(this.num < this.Idlist.length){
+                 this.num++;
+            }
+            this.films = this.films.concat(result.coming);
+        }
+    },
+    mounted(){
+        this.scroll = scroll({
+            el : this.$refs.root,
+            handler: this.getFilms.bind(this),
+        })
+    }
+}
+</script>
+<style lang="scss">
+    .hot-movie{
+        margin-top: 1.173333rem;
+        height: 100%;
+    }
+    .hot-movie-wrapper{
+        height: 100%;
+        overflow: hidden;
+        margin-bottom: 1.28rem;
+    }
+</style>
+
+
