@@ -1,7 +1,7 @@
 <template>
-    <div class="item">
+    <div class="item" @click="goToDetail">
         <div class="img-wrap">
-            <img :src="info.img | tochange" alt="">
+            <img :src="info.img | tochange128 " alt="">
         </div>
         <div class="content">
            <div class="left">
@@ -25,8 +25,9 @@
                
            </div>
            <div class="right">
-               <div class="btn normal" v-if="info.globalReleased"><span class="fix" data-bid="dp_wx_home_movie_btn">购票</span></div>
-               <div class="btn pre" v-else><span class="fix" data-bid="dp_wx_home_movie_btn">预售</span></div>
+               <div class="btn normal" v-if="info.globalReleased && info.showInfo"><span class="fix">购票</span></div>
+               <div class="btn pre" v-else-if="!info.globalReleased && info.showInfo"><span class="fix">预售</span></div>
+               <div class="btn wantlook" v-else><span class="fix">想看</span></div>
            </div>
         </div>
     </div>
@@ -34,6 +35,11 @@
 <script>
 export default {
     props:['info'],
+    methods:{
+        goToDetail(){
+            this.$router.push({name:'detail',params:{id: this.info.id} ,query:{name:this.info.nm} })
+        }
+    }
 }
 </script>
 <style lang="scss">
@@ -119,6 +125,9 @@ export default {
                 }
                 .pre{
                     background-color: #3c9fe6;
+                }
+                .wantlook{
+                    background-color: #faaf00;
                 }
             } 
         }

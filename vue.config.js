@@ -16,6 +16,13 @@ module.exports = {
           pathRewrite : {
             '^/my' : ''
           }
+        },
+        '/logins':{
+            target:'https://i.meituan.com',
+            changOrigin:true,
+            pathRewrite : {
+              '^/logins' : ''
+            }
         }
       }
     },

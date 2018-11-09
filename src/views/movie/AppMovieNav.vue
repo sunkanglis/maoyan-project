@@ -37,6 +37,7 @@ export default {
         display: flex;
         justify-content: space-between;
         background-color: #fff;
+        z-index: 12;
         .city{
             font-size: .4rem;
             padding-left: .4rem;

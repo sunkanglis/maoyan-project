@@ -9,7 +9,7 @@
                 >{{item.title}}</li>
             </ul>
         </div>
-         <component :is='is'></component>
+         <component :is='is' class="component"></component>
     </section>
 </template>
 <script>
@@ -32,6 +32,14 @@ export default {
 }
 </script>
 <style lang="scss">
+    .component{
+        background-color: #f8f8f8;
+         height: 100%;
+    }
+    .app-login{
+        height: 100%;
+        font-size: .373333rem;
+    }
     .login-nav{
         width: 100%;
         height: 1.12rem;

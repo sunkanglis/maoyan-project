@@ -1,7 +1,7 @@
 <template>
     <div id="movie">
         <app-movie-nav></app-movie-nav>
-        <router-view></router-view>
+        <router-view class="view"></router-view>
         <app-footer></app-footer>
     </div>
     
@@ -20,6 +20,10 @@ export default {
 }
 </script>
 <style lang="scss">
+    .view{
+        margin-top: 1.173333rem;
+        height: 100%;
+    }
     #movie{
         overflow: hidden;
         height: 100%;

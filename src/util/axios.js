@@ -8,8 +8,8 @@ const ajax = (options) => {
             return res.data;     
         })
         .catch(err => {
-            return err
             console.log('数据请求失败')
+            return err
             
         })
     

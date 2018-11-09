@@ -9,6 +9,7 @@ import ComingMovie from '@views/movie/ComingMovie';
 import AppCinema from '@views/cinema/AppCinema';
 import AppMine from '@views/mine/AppMine';
 import AppLogin from '@views/mine/AppLogin';
+import AppDetail from '@views/detail/AppDetail';
 
 // 路由表 
 const routes = [
@@ -29,9 +30,16 @@ const routes = [
             },
             {
                 path : 'comingmovie',
+                name : 'comgingmovie',
                 component : ComingMovie
             }
         ]
+    },
+    {
+        path: '/detail/:id',
+        name: 'detail',
+        component:AppDetail,
+        props:true
     },
     {
         path : '/cinema',

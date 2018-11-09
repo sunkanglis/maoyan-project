@@ -12,11 +12,6 @@ import AppHeader from '@c/layout/AppHeader';
 import AppMovie from '@views/movie/AppMovie';
 export default {
   name:'app',
-  data(){
-    return {
-      ismine : false
-    }
-  },
   components:{
     AppHeader,
     AppMovie,

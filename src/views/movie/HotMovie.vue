@@ -16,7 +16,8 @@ export default {
         return {
             movieIds:[],
             films :[],
-            num :0
+            num :0,
+            hasMore: true
         }
     },
     components:{
@@ -44,15 +45,19 @@ export default {
     },
     methods:{
         async getFilms(){// 加载的主要逻辑
-            let result = await this.$http({
+            if(!this.hasMore) return false;
+            var result = await this.$http({
                 url:'/my/ajax/moreComingList',
                 params:{
                     token:'',
                     movieIds : this.Idlist[this.num].join(',')
-                    }
-             })
-            if(this.num < this.Idlist.length){
-                 this.num++;
+                }
+            })
+            
+            if(this.num == this.Idlist.length-1){
+                this.hasMore = false;
+            }else{
+                this.num++;
             }
             this.films = this.films.concat(result.coming);
         }
@@ -66,10 +71,6 @@ export default {
 }
 </script>
 <style lang="scss">
-    .hot-movie{
-        margin-top: 1.173333rem;
-        height: 100%;
-    }
     .hot-movie-wrapper{
         height: 100%;
         overflow: hidden;

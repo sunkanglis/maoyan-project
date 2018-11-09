@@ -35,6 +35,7 @@ export default {
                 case 'cinema' :return {title:'影院',isShow : false};
                 case 'mine' : return {title:'猫眼电影',isShow : true}
                 case 'login' : return {title:'猫眼电影',isShow : true}
+                case 'detail': return {title:_to.query.name,isShow : true}
                 default: return {title:'猫眼电影',isShow:false};
             }
         },
