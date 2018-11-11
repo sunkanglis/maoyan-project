@@ -43,8 +43,12 @@ export default {
             padding-left: .4rem;
             color: #666;
             line-height: 1.173333rem;
+            position: relative;
             i{
                 margin-left: 2px;
+                position: absolute;
+                top:.32rem;
+                left: 1.28rem;
             }
         }
         .tabs{

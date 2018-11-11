@@ -23,7 +23,7 @@ import LoginBottom from '@c/common/app-login/LoginBottom'
 export default {
     data(){
         return {
-            phone:'15898727885',
+            phone:'',
             isCodeactive: false,
             isactive: false,
             isResend: false,
@@ -34,29 +34,28 @@ export default {
         async sendCode(){
             if(!this.isResend){
                 let result = await this.$http({
-                url:'/logins/account/custom/mobilelogincode2',
-                method:'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data:{
-                    mobile:this.phone,
-                },
-                transformRequest: [function (data) {
-                    // Do whatever you want to transform the data
-                    let ret = ''
-                    for (let it in data) {
-                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-                    }
-                    return ret
-                }],
-
-            })
-            console.log(result);
+                    url:'/logins/account/custom/mobilelogincode2',
+                    method:'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    data:{
+                        mobile:this.phone,
+                    },
+                    transformRequest: [function (data) {
+                        // Do whatever you want to transform the data
+                        let ret = ''
+                        for (let it in data) {
+                        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                        }
+                        return ret
+                    }],
+                })
+                console.log(result);
             }
             this.authCode()
         },
-        authCode () { // 验证码处理
+        authCode () { // 验证码倒计时处理
             this.isResend = true;
             this.isCodeactive = false
             this.timer = setInterval(() => {

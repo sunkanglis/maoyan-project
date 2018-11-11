@@ -12,7 +12,7 @@
 </template>
 <script>
 import MostEpWrapper from '@c/common/app-movie/MostEpWrapper'
-import ComeMovieWrap from '@c/common/app-movie/ComeMovieWrap'
+import ComeMovieWrap from '@c/common/app-movie/comingmovie/ComeMovieWrap'
 import scroll from '@util/scroll';
 export default {
     components:{

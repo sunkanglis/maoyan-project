@@ -18,11 +18,18 @@ module.exports = {
           }
         },
         '/logins':{
-            target:'https://i.meituan.com',
-            changOrigin:true,
-            pathRewrite : {
-              '^/logins' : ''
-            }
+          target:'https://i.meituan.com',
+          changOrigin:true,
+          pathRewrite : {
+            '^/logins' : ''
+          }
+        },
+        '/doublelogin':{
+          target:'https://catfront.dianping.com',
+          changOrigin:true,
+          pathRewrite : {
+            '^/doublelogin' : ''
+          }
         }
       }
     },

@@ -1,5 +1,5 @@
 <template>
-    <div class="item" @click="goToDetail">
+    <div class="movie-item" @click="goToDetail">
         <div class="img-wrap">
             <img :src="info.img | tochange128 " alt="">
         </div>
@@ -43,7 +43,7 @@ export default {
 }
 </script>
 <style lang="scss">
-    .item{
+    .movie-item{
         padding:0 .4rem;
         height: 3.04rem;
         display: flex;

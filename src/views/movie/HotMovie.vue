@@ -1,7 +1,7 @@
 <template>
     <section class="hot-movie">
         <div ref='root' class="hot-movie-wrapper">
-            <div  class="hot-movie-list">
+            <div  class="hot-movie-list" id="container">
                 <hot-movie-item v-for="film in films" :key="film.id" :info='film'></hot-movie-item>
                 <div style="height:150px"></div>
             </div>
@@ -11,6 +11,7 @@
 <script>
 import HotMovieItem from '@c/common/app-movie/HotMovieItem';
 import scroll from '@util/scroll';
+import { Toast } from 'mint-ui';
 export default {
     data(){
         return {
@@ -43,9 +44,19 @@ export default {
         this.movieIds = results.movieIds;
         this.getFilms();
     },
+    beforeDestroy () {
+        if (this.instance) this.instance.close() // 切换路由的时候，关掉框框
+    },
     methods:{
         async getFilms(){// 加载的主要逻辑
-            if(!this.hasMore) return false;
+            if(!this.hasMore) {
+                if (this.instance) this.instance.close()
+                    this.instance = Toast({
+                        message: '没有更多了...',
+                        position: 'bottom'
+                    })
+                return false;
+            }
             var result = await this.$http({
                 url:'/my/ajax/moreComingList',
                 params:{
@@ -74,7 +85,6 @@ export default {
     .hot-movie-wrapper{
         height: 100%;
         overflow: hidden;
-        margin-bottom: 1.28rem;
     }
 </style>
 

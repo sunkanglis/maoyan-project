@@ -10,6 +10,7 @@ import AppCinema from '@views/cinema/AppCinema';
 import AppMine from '@views/mine/AppMine';
 import AppLogin from '@views/mine/AppLogin';
 import AppDetail from '@views/detail/AppDetail';
+import AppNotFound from '@views/not-found/AppNotFound';
 
 // 路由表 
 const routes = [
@@ -56,6 +57,15 @@ const routes = [
         name : 'mine',
         component: AppMine
     },
+    {
+        path : '/not-found',
+        name : 'not-found',
+        component: AppNotFound
+    },
+    {
+        path:'**',
+        redirect:'/not-found'
+    }
 ];
 
 // 路由工具

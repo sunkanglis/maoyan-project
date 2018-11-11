@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import ComeMovieBox from './comingmovie/ComeMovieBox'
+import ComeMovieBox from './ComeMovieBox'
 export default {
     data(){
         return {
