@@ -11,7 +11,7 @@
 <script>
 import HotMovieItem from '@c/common/app-movie/HotMovieItem';
 import scroll from '@util/scroll';
-import { Toast } from 'mint-ui';
+import { Toast ,Indicator } from 'mint-ui';
 export default {
     data(){
         return {
@@ -33,6 +33,22 @@ export default {
             }
             return arr1;
         }
+    },
+    watch:{
+        films:{
+            handler(){
+                this.$nextTick(()=>{
+                    Indicator.close();
+                })
+            }
+        }
+    },
+    beforeCreate(){
+        Indicator.open({
+            text: '加载中...',
+            spinnerType: 'fading-circle',
+            spinnercolor: '#e54847'
+        });
     },
     async created(){
         let results = await this.$http({

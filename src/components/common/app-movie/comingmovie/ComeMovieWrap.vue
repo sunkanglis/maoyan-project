@@ -7,7 +7,8 @@
     </div>
 </template>
 <script>
-import ComeMovieBox from './ComeMovieBox'
+import ComeMovieBox from './ComeMovieBox';
+import { Indicator } from 'mint-ui';
 export default {
     data(){
         return {
@@ -16,6 +17,22 @@ export default {
             num:0,
             films:[],
         }
+    },
+    watch:{
+        films:{
+            handler(){
+                this.$nextTick(()=>{
+                    Indicator.close();
+                })
+            }
+        }
+    },
+    beforeCreate(){
+        Indicator.open({
+            text: '加载中...',
+            spinnerType: 'fading-circle',
+            spinnercolor: '#e54847'
+        });
     },
     async created(){
         let result = await this.$http({

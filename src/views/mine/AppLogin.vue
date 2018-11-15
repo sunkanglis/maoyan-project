@@ -19,10 +19,10 @@ export default {
     data(){
         return {
             types:[
+                {title:'手机验证登录',to:'TelLogin'},
                 {title:'美团账号登录',to:'MtLogin'},
-                {title:'手机验证登录',to:'TelLogin'}
             ],
-            is:"MtLogin"
+            is:"TelLogin"
         }
     },
     components:{

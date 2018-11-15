@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+// 验证是否已登录
+import auth from '@util/auth';
+
 import AppMovie from '@views/movie/AppMovie';
 import HotMovie from '@views/movie/HotMovie';
 import ComingMovie from '@views/movie/ComingMovie';
@@ -11,6 +14,8 @@ import AppMine from '@views/mine/AppMine';
 import AppLogin from '@views/mine/AppLogin';
 import AppDetail from '@views/detail/AppDetail';
 import AppNotFound from '@views/not-found/AppNotFound';
+import AppCity from '@views/city/AppCity';
+import AppSearch from '@views/search/AppSearch';
 
 // 路由表 
 const routes = [
@@ -55,7 +60,21 @@ const routes = [
     {
         path : '/mine',
         name : 'mine',
-        component: AppMine
+        component: AppMine,
+        beforeEnter:(to,from,next) =>{
+            let result = auth.authLogin()
+            next(result.date ? true : {name: 'login'})
+        }
+    },
+    {
+        path : '/city',
+        name : 'city',
+        component: AppCity
+    },
+    {
+        path : '/search',
+        name : 'search',
+        component: AppSearch
     },
     {
         path : '/not-found',

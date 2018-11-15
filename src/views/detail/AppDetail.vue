@@ -7,7 +7,7 @@
             <div class="movie-filter"></div>
             <div class="movie-container" >
                 <div class="img">
-                    <img :src="movieimg" alt="">
+                    <img :src="movieimg" alt="" >
                 </div>
                 <div class="content">
                     <div class="name text-ellipsis">{{detail.nm}}</div>
@@ -33,7 +33,7 @@
         </div>
         <div class="actor">
             <ul class="actor-list">
-                <li >
+                <li v-for="(item,i) in 5" :key="i">
                     <img src="http://p0.meituan.net/moviemachine/231e87d37ebd5e191899e2210619b2dd41945.jpg@130w_180h.webp" alt="">
                     <span class="person-name">鲁本·弗雷斯彻</span>
                     <span class="person-roles">导演</span>
@@ -224,9 +224,11 @@ export default {
                 height: 4.32rem;
                 padding: .4rem 0 .133333rem .4rem;
                 background-color: #fff;
+                display: flex;
                 li{
                     width: 1.733333rem;
                     height: 3.626667rem;
+                    margin-right: .4rem;
                     img{
                         margin: .053333rem .053333rem .053333rem 0;
                     }

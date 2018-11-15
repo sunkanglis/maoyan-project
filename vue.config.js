@@ -17,18 +17,25 @@ module.exports = {
             '^/my' : ''
           }
         },
-        '/logins':{
-          target:'https://i.meituan.com',
+        // '/logins':{
+        //   target:'https://i.meituan.com',
+        //   changOrigin:true,
+        //   pathRewrite : {
+        //     '^/logins' : ''
+        //   }
+        // },
+        // '/doublelogin':{
+        //   target:'https://catfront.dianping.com',
+        //   changOrigin:true,
+        //   pathRewrite : {
+        //     '^/doublelogin' : ''
+        //   }
+        // },
+        'bd':{
+          target:'http://api.map.baidu.com',
           changOrigin:true,
-          pathRewrite : {
-            '^/logins' : ''
-          }
-        },
-        '/doublelogin':{
-          target:'https://catfront.dianping.com',
-          changOrigin:true,
-          pathRewrite : {
-            '^/doublelogin' : ''
+          pathRewrite:{
+            '^/bd' : ''
           }
         }
       }
@@ -42,6 +49,8 @@ module.exports = {
             .set('@c',resolve('src/components'))
             .set('@views',resolve('src/views'))
             .set('@util',resolve('src/util'))
+            .set('@assets',resolve('src/assets'))
+            .set('@img',resolve('src/img'))
              
              
      }

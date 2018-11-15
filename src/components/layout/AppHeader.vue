@@ -33,9 +33,11 @@ export default {
             let _to = to || this.$route;
             switch(_to.name){
                 case 'cinema' :return {title:'影院',isShow : false};
-                case 'mine' : return {title:'猫眼电影',isShow : true}
-                case 'login' : return {title:'猫眼电影',isShow : true}
-                case 'detail': return {title:_to.query.name,isShow : true}
+                case 'login' : return {title:'猫眼电影',isShow : true};
+                case 'detail': return {title:_to.query.name,isShow : true};
+                case 'city': return {title:'选择城市' , isShow:true};
+                case 'mine': return {title:'我的' , isShow:false};
+                case 'search': return {title:'搜索影院' , isShow:true};
                 default: return {title:'猫眼电影',isShow:false};
             }
         },

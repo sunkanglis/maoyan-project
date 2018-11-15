@@ -13,6 +13,9 @@ import '@lib/flexible'
 // router 路由
 import router from './router/idnex'
 
+// store
+import store from '@/store'
+
 // 引入各种插件
 import '@lib'
 
@@ -20,6 +23,7 @@ import '@lib'
 
 new Vue({
   router, // 从此任何组件可以使用到$router(路由工具)，$route(路由属性)
+  store,
   render: h => h(App)
   // render: (createElement) => {
   //   return createElement(App)

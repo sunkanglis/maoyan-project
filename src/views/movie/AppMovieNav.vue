@@ -1,8 +1,9 @@
 <template>
     <section class="app-nav">
-        <div class="city">北京
+        <router-link tag='div' :to="{name:'city'}" class="city">
+            {{chunks.city?chunks.city.cityName:''}}
             <i class="fa fa-sort-desc"></i>
-        </div>
+        </router-link>
         <div class="tabs">
             <router-link
                 exact-active-class='active' 
@@ -17,6 +18,8 @@
     </section>
 </template>
 <script>
+import { mapState } from 'vuex';
+import { CHANGE_CITY } from '@/store/chunks/mutation-type'
 export default {
     data(){
         return {
@@ -25,7 +28,20 @@ export default {
                 {id:2,title:'即将上映',path:'comingmovie'}
             ]
         }
-    }
+    },
+    computed:mapState(['chunks']),
+    beforeCreate(){
+         // 一进来就先去定位更改城市信息, 如果有保存的，就别获取去了
+        if ( localStorage.city ) {
+            this.$store.commit({
+                type: 'chunks/' + CHANGE_CITY,
+                cities: JSON.parse(localStorage.cities),
+                city: JSON.parse(localStorage.city)
+            })
+        } else {
+            this.$store.dispatch({type: 'chunks/getCurrentPosition'})
+        }     
+    },
 }
 </script>
 <style lang="scss">

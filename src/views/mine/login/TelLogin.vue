@@ -12,15 +12,17 @@
                 </li>
             </ul>
             <div class="tel-btn-wrapper">
-                <button type="submit"  class="btn" :class="isactive?'active':''">登录</button>
+                <button @click.prevent="login" type="submit"  class="btn" :class="isactive?'active':''">登录</button>
             </div>
         </form>
         <login-bottom></login-bottom>
     </div>
 </template>
 <script>
-import LoginBottom from '@c/common/app-login/LoginBottom'
+import LoginBottom from '@c/common/app-login/LoginBottom';
+import mixins from '@assets/mixins'
 export default {
+    mixins:[mixins],
     data(){
         return {
             phone:'',
@@ -31,27 +33,28 @@ export default {
         }
     },
     methods:{
+        // 调用验证码接口  但是现在接口无法调用
         async sendCode(){
             if(!this.isResend){
-                let result = await this.$http({
-                    url:'/logins/account/custom/mobilelogincode2',
-                    method:'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    data:{
-                        mobile:this.phone,
-                    },
-                    transformRequest: [function (data) {
-                        // Do whatever you want to transform the data
-                        let ret = ''
-                        for (let it in data) {
-                        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
-                        }
-                        return ret
-                    }],
-                })
-                console.log(result);
+                // let result = await this.$http({
+                //     url:'/logins/account/custom/mobilelogincode2',
+                //     method:'POST',
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded'
+                //     },
+                //     data:{
+                //         mobile:this.phone,
+                //     },
+                //     transformRequest: [function (data) {
+                //         // Do whatever you want to transform the data
+                //         let ret = ''
+                //         for (let it in data) {
+                //         ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                //         }
+                //         return ret
+                //     }],
+                // })
+                // console.log(result);
             }
             this.authCode()
         },
@@ -67,7 +70,8 @@ export default {
                     this.resendTime = 60
                 }
             },1000)
-        }
+        },
+        // 点击登录
     },
     watch:{
         phone:{
@@ -122,6 +126,7 @@ export default {
                     padding: 0 .4rem;
                     color: #999;
                     border-radius: .08rem;
+                    outline: none;
                     &.active{
                         border: .026667rem solid #df2d2d;
                         background: 0;
